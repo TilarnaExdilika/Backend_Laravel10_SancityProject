@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
-// use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -27,5 +27,27 @@ class UserController extends Controller
             ->get();
 
         return response()->json($users);
+    }
+
+    public function create() 
+    {
+        $users_status = DB::table("users_status")
+        ->select(
+            "id as value",
+            "name as label"
+        )
+        ->get();
+
+        $departments = DB::table("departments")
+        ->select(
+            "id as value",
+            "name as label"
+        )
+        ->get();
+
+        return response()->json([
+            "users_status" => $users_status,
+            "departments" => $departments
+        ]);
     }
 }
