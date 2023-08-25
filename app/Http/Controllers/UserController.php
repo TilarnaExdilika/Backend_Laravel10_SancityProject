@@ -50,4 +50,10 @@ class UserController extends Controller
             "departments" => $departments
         ]);
     }
+
+
+    public function store(Request $request)
+    {
+        return $request;
+    }
 }
